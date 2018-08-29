@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Home</title>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -107,6 +107,26 @@
 			</div>
 			<div class="biseller-info">
 			<ul id="flexiselDemo3">
+				<li th:each="list:${list}">
+					<div class="biseller-column">
+						<img src="images/sm1.jpg" alt="" class="veiw-img">
+							<div class="veiw-img-mark">
+								<a href="single.html">Add to Cart</a>
+							</div>
+						<div class="biseller-name">
+							<h4 th:text="${list.description}"></h4>
+							<small th:text="${'by'+list.manufacturer}"> </small>
+						</div>
+						<div class="biseller-name1">
+							<p  th:text="${list.price+'$'}"></p>
+						</div>
+						<div class="clearfix"></div>
+						<div class="price-s">
+							<a href="single.html">Add to Shopping bag</a>
+						</div>
+						
+					</div>
+				</li>
 				<li>
 					<div class="biseller-column">
 					<img src="images/sm1.jpg" alt="" class="veiw-img">
