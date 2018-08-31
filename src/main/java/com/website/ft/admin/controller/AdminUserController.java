@@ -19,7 +19,7 @@ import com.website.ft.util.MD5;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminUserController {
 	@Autowired
 	private UserService userService;
 	
