@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.website.ft.model.Product">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="level" jdbcType="INTEGER" property="level" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="discount" jdbcType="DOUBLE" property="discount" />
@@ -23,7 +24,7 @@
     <result column="updateBy" jdbcType="VARCHAR" property="updateby" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, type, price, discount, manufacturer, sales, stock, description, img1, img2, 
+    id, name, level,type, price, discount, manufacturer, sales, stock, description, img1, img2, 
     img3, img4, img5, img6, createDate, createBy, updateDate, updateBy
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -43,14 +44,14 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.website.ft.model.Product">
-    insert into t_product (id, name, type, 
+    insert into t_product (name, level, type, 
       price, discount, manufacturer, 
       sales, stock, description, 
       img1, img2, img3, img4, 
       img5, img6, createDate, 
       createBy, updateDate, updateBy
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+    values (#{name,jdbcType=VARCHAR},#{level,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
       #{price,jdbcType=DOUBLE}, #{discount,jdbcType=DOUBLE}, #{manufacturer,jdbcType=VARCHAR}, 
       #{sales,jdbcType=INTEGER}, #{stock,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
       #{img1,jdbcType=VARCHAR}, #{img2,jdbcType=VARCHAR}, #{img3,jdbcType=VARCHAR}, #{img4,jdbcType=VARCHAR}, 
@@ -61,11 +62,11 @@
   <insert id="insertSelective" parameterType="com.website.ft.model.Product">
     insert into t_product
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="name != null">
         name,
+      </if>
+      <if test="level != null">
+        level,
       </if>
       <if test="type != null">
         type,
@@ -120,11 +121,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+       <if test="level != null">
+        #{level,jdbcType=INTEGER},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
@@ -185,6 +186,9 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
       <if test="type != null">
         type = #{type,jdbcType=INTEGER},
       </if>
@@ -242,6 +246,7 @@
   <update id="updateByPrimaryKey" parameterType="com.website.ft.model.Product">
     update t_product
     set name = #{name,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
       type = #{type,jdbcType=INTEGER},
       price = #{price,jdbcType=DOUBLE},
       discount = #{discount,jdbcType=DOUBLE},
