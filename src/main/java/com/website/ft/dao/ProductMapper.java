@@ -15,7 +15,7 @@ public interface ProductMapper {
 
     Product selectByPrimaryKey(Integer id);
     
-    List<Product> selectAll();
+    List<Product> selectAll(Product record);
 
     int updateByPrimaryKeySelective(Product record);
 

@@ -37,12 +37,14 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_product
+    from t_product t ORDER BY t.createDate DESC
   </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_product
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.website.ft.model.Product">
     insert into t_product (name, level, type, 
       price, discount, manufacturer, 

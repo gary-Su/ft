@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.website.ft.dao.ProductMapper;
 import com.website.ft.model.Product;
+import com.website.ft.util.Page;
 
 @Service
 public class ProductService {
@@ -29,9 +30,16 @@ public class ProductService {
 			return productMapper.selectByPrimaryKey(id);
 		}
 	    
-	    public List<Product> selectAll() {
-			return productMapper.selectAll();
+	    public List<Product> selectAll(Product record) {
+			return productMapper.selectAll(record);
 		}
+	    
+	    @SuppressWarnings("unchecked")
+		public Page<Product> findPage(Page page, Product product) {
+	    	page.setList(productMapper.selectAll(product));
+	    	return page;
+	    	
+	    }
 
 	    public int updateByPrimaryKeySelective(Product record) {
 			return productMapper.updateByPrimaryKeySelective(record);

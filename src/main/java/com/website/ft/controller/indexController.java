@@ -18,7 +18,7 @@ public class indexController {
 	
 	@RequestMapping("/index")
 	public String index(ModelMap modelMap) {
-		List<Product> list = productService.selectAll();
+		List<Product> list = productService.selectAll(null);
 		modelMap.put("list", list);
 		return "/index";
 	}
