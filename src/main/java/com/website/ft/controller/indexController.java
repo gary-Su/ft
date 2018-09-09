@@ -16,7 +16,7 @@ public class indexController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping("/index")
+	@RequestMapping(value= {"","/list"})
 	public String index(ModelMap modelMap) {
 		List<Product> list = productService.selectAll(null);
 		modelMap.put("list", list);

@@ -18,6 +18,7 @@
     <result column="img4" jdbcType="VARCHAR" property="img4" />
     <result column="img5" jdbcType="VARCHAR" property="img5" />
     <result column="img6" jdbcType="VARCHAR" property="img6" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
     <result column="createBy" jdbcType="VARCHAR" property="createby" />
     <result column="updateDate" jdbcType="TIMESTAMP" property="updatedate" />
@@ -33,11 +34,16 @@
     from t_product
     where id = #{id,jdbcType=INTEGER}
   </select>
-  
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectAllCount"  resultType="java.lang.Integer">
+    select count(*) from t_product
+  </select>
+  <select id="selectAll" parameterType="com.website.ft.model.Product" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from t_product t ORDER BY t.createDate DESC
+     <if test="pageNo != null and pageSize != null">
+     	limit #{pageNo}, #{pageSize}
+     </if>
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -229,6 +235,9 @@
       </if>
       <if test="img6 != null">
         img6 = #{img6,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
       </if>
       <if test="createdate != null">
         createDate = #{createdate,jdbcType=TIMESTAMP},

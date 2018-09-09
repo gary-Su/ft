@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Bootstrap Admin</title>
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link rel="stylesheet" type="text/css"
+	href="../static/admin/lib/bootstrap/css/bootstrap.css"
+	th:href="@{/admin/lib/bootstrap/css/bootstrap.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/admin/stylesheets/theme.css"
+	th:href="@{/admin/stylesheets/theme.css}">
+<link rel="stylesheet"
+	href="../static/admin/lib/font-awesome/css/font-awesome.css"
+	th:href="@{/admin/lib/font-awesome/css/font-awesome.css}">
+
+<script src="../static/admin/lib/jquery-1.8.1.min.js" th:src="@{/admin/lib/jquery-1.8.1.min.js}" type="text/javascript"></script>
+<script src="../static/admin/lib/jquery.form.js" th:src="@{/admin/lib/jquery.form.js}" type="text/javascript"></script>
+<script src="../static/admin/lib/bootstrap/js/bootstrap.js" th:src="@{/admin/lib/bootstrap/js/bootstrap.js}"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btn").click(function () {
+			if(confirm("确认上传？")){
+				var imagePath1 = $("#uploadimage1").val();
+				var imagePath2 = $("#uploadimage2").val();
+				var imagePath3 = $("#uploadimage3").val();
+				var imagePath4 = $("#uploadimage4").val();
+				var imagePath5 = $("#uploadimage5").val();
+				var imagePath6 = $("#uploadimage6").val();
+			    if (imagePath1 == "" && imagePath2 == ""  && imagePath3 == "" && imagePath4 == "" && imagePath5 == "" && imagePath6 == "") {  
+			    	alert("please upload image file",2);
+			        return false;  
+			    } 
+			    if(imagePath1 != ""){
+			    	 var strExtension1 = imagePath1.substr(imagePath1.lastIndexOf('.') + 1);  
+					    if (strExtension1!='jpg') { 
+					    	if (strExtension1!='bmp') { 
+					    		if (strExtension1!='png') { 
+					    			alert("please upload file that is a image for image1",2);  
+							        return false; 
+						    	}
+					    	}
+					    }
+			    }
+			    if(imagePath2 != ""){
+			    	 var strExtension2 = imagePath2.substr(imagePath2.lastIndexOf('.') + 1);  
+					    if (strExtension2!='jpg') { 
+					    	if (strExtension2!='bmp') { 
+					    		if (strExtension2!='png') { 
+					    			alert("please upload file that is a image for image2",2);  
+							        return false; 
+						    	}
+					    	}
+					    }
+			    }
+			    if(imagePath3 != ""){
+			    	 var strExtension3 = imagePath3.substr(imagePath3.lastIndexOf('.') + 1);  
+					    if (strExtension3!='jpg') { 
+					    	if (strExtension3!='bmp') { 
+					    		if (strExtension3!='png') { 
+					    			alert("please upload file that is a image for image3",2);  
+							        return false; 
+						    	}
+					    	}
+					    }
+			    }
+			    if(imagePath4 != ""){
+			    	 var strExtension4 = imagePath4.substr(imagePath4.lastIndexOf('.') + 1);  
+					    if (strExtension4!='jpg') { 
+					    	if (strExtension4!='bmp') { 
+					    		if (strExtension4!='png') { 
+					    			alert("please upload file that is a image for image4",2);  
+							        return false; 
+						    	}
+					    	}
+					    }
+			    }
+			    if(imagePath5 != ""){
+			    	 var strExtension5 = imagePath5.substr(imagePath5.lastIndexOf('.') + 1);  
+					    if (strExtension5!='jpg') { 
+					    	if (strExtension5!='bmp') { 
+					    		if (strExtension5!='png') { 
+					    			alert("please upload file that is a image for image5",2);  
+							        return false; 
+						    	}
+					    	}
+					    }
+			    }
+			    if(imagePath6 != ""){
+			    	 var strExtension6 = imagePath6.substr(imagePath6.lastIndexOf('.') + 1);  
+					    if (strExtension6!='jpg') { 
+					    	if (strExtension6!='bmp') { 
+					    		if (strExtension6!='png') { 
+					    			alert("please upload file that is a image for image6",2);  
+							        return false; 
+						    	}
+					    	}
+					    }
+			    }
+			   
+			    $("#uploadForm").ajaxSubmit({  
+			        type : 'POST',  
+			        url :  '[[@{/admin/product/uploadImage}]]',  
+			        success : function(data) {  
+			        	if(data.code=='0'){
+			        		if(data.img1 != null){
+			        			$("#imgDiv1").empty();
+					            $("#imgDiv1").html('<img th:src="@{'+data.img1+'}" style="width:137px;height:127px;"/>');
+					            $("#imgDiv1").show();
+					            $("#uploadimage1").val("");
+					            $("#img1").val(data.img1);
+			        		}
+			        		if(data.img2 != null){
+			        			$("#imgDiv2").empty();
+					            $("#imgDiv2").html('<img th:src="@{'+data.img2+'}" style="width:137px;height:127px;"/>');
+					            $("#imgDiv2").show();
+					            $("#uploadimage2").val("");
+					            $("#img2").val(data.img2);
+			        		}
+			        		if(data.img3 != null){
+			        			$("#imgDiv3").empty();
+					            $("#imgDiv3").html('<img th:src="@{'+data.img3+'}" style="width:137px;height:127px;"/>');
+					            $("#imgDiv3").show();
+					            $("#uploadimage3").val("");
+					            $("#img3").val(data.img3);
+			        		}
+			        		if(data.img4 != null){
+			        			$("#imgDiv4").empty();
+					            $("#imgDiv4").html('<img th:src="@{'+data.img4+'}" style="width:137px;height:127px;"/>');
+					            $("#imgDiv4").show();
+					            $("#uploadimage4").val("");
+					            $("#img4").val(data.img4);
+			        		}
+			        		if(data.img5 != null){
+			        			$("#imgDiv5").empty();
+					            $("#imgDiv5").html('<img th:src="@{'+data.img5+'}" style="width:137px;height:127px;"/>');
+					            $("#imgDiv5").show();
+					            $("#uploadimage5").val("");
+					            $("#img5").val(data.img5);
+			        		}
+			        		if(data.img6 != null){
+			        			$("#imgDiv6").empty();
+					            $("#imgDiv6").html('<img th:src="@{'+data.img6+'}" style="width:137px;height:127px;"/>');
+					            $("#imgDiv6").show();
+					            $("#uploadimage6").val("");
+					            $("#img6").val(data.img6);
+			        		}
+			        	}else{
+			        		alert(data.msg+":"+data.code);
+			        	}
+			        },  
+			        error : function() {  
+			            alert("上传失败，请检查网络后重试,上传文件太大");  
+			        }  
+			    });
+			}
+		})
+	});
+	
+	function submit(){
+		$("#searchForm").submit();
+	}
+	 function NumberCheck(num) {
+	      var str = num;
+	      var len1 = str.substr(0, 1);
+	      var len2 = str.substr(1, 1);
+	      //如果第一位是0，第二位不是点，就用数字把点替换掉
+	      if (str.length > 1 && len1 == 0 && len2 != ".") {
+	        str = str.substr(1, 1);
+	      }
+	      //第一位不能是.
+	      if (len1 == ".") {
+	        str = "";
+	      }
+	      //限制只能输入一个小数点
+	      if (str.indexOf(".") != -1) {
+	        var str_ = str.substr(str.indexOf(".") + 1);
+	        if (str_.indexOf(".") != -1) {
+	          str = str.substr(0, str.indexOf(".") + str_.indexOf(".") + 1);
+	        }
+	      }
+	      //正则替换，保留数字和小数点
+	      str = str.replace(/[^\d^\.]+/g,'')
+	      //如果需要保留小数点后两位，则用下面公式
+	      str = str.replace(/\.\d\d$/,'')
+	      return str;
+	    }
+</script>
+
+<style type="text/css">
+#line-chart {
+	height: 300px;
+	width: 800px;
+	margin: 0px auto;
+	margin-top: 1em;
+}
+
+.brand {
+	font-family: georgia, serif;
+}
+
+.brand .first {
+	color: #ccc;
+	font-style: italic;
+}
+
+.brand .second {
+	color: #fff;
+	font-weight: bold;
+}
+</style>
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
+<!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
+<!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<body class="">
+	<!--<![endif]-->
+
+	<div class="navbar">
+		<div class="navbar-inner">
+			<ul class="nav pull-right">
+
+				<li><a href="#"
+					class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
+				<li id="fat-menu" class="dropdown"><a href="#" role="button"
+					class="dropdown-toggle" data-toggle="dropdown"> <i
+						class="icon-user"></i> Jack Smith <i class="icon-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a tabindex="-1" href="#">My Account</a></li>
+						<li class="divider"></li>
+						<li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
+						<li class="divider visible-phone"></li>
+						<li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+					</ul></li>
+			</ul>
+			<a class="brand" href="index.html"><span class="first">Your</span>
+				<span class="second">Company</span></a>
+		</div>
+	</div>
+	<div class="sidebar-nav">
+		<a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i
+			class="icon-dashboard"></i>Dashboard</a>
+		<ul id="dashboard-menu" class="nav nav-list collapse in">
+			<li><a href="index.html" th:href="@{/admin/index}">Home</a></li>
+			<li class="active"><a href="/admin/product" th:href="@{/admin/product}">Product List</a></li>
+			<li><a href="users.html">Sample List</a></li>
+			<li class="active"><a href="user.html">Sample Item</a></li>
+			<li><a href="media.html">Media</a></li>
+			<li><a href="calendar.html">Calendar</a></li>
+
+		</ul>
+
+		<a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i
+			class="icon-briefcase"></i>Account<span class="label label-info">+3</span></a>
+		<ul id="accounts-menu" class="nav nav-list collapse">
+			<li><a href="sign-in.html">Sign In</a></li>
+			<li><a href="sign-up.html">Sign Up</a></li>
+			<li><a href="reset-password.html">Reset Password</a></li>
+		</ul>
+
+		<a href="#error-menu" class="nav-header collapsed"
+			data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error
+			Pages <i class="icon-chevron-up"></i></a>
+		<ul id="error-menu" class="nav nav-list collapse">
+			<li><a href="403.html">403 page</a></li>
+			<li><a href="404.html">404 page</a></li>
+			<li><a href="500.html">500 page</a></li>
+			<li><a href="503.html">503 page</a></li>
+		</ul>
+
+		<a href="#legal-menu" class="nav-header" data-toggle="collapse"><i
+			class="icon-legal"></i>Legal</a>
+		<ul id="legal-menu" class="nav nav-list collapse">
+			<li><a href="privacy-policy.html">Privacy Policy</a></li>
+			<li><a href="terms-and-conditions.html">Terms and
+					Conditions</a></li>
+		</ul>
+
+		<a href="help.html" class="nav-header"><i
+			class="icon-question-sign"></i>Help</a> <a href="faq.html"
+			class="nav-header"><i class="icon-comment"></i>Faq</a>
+	</div>
+
+	<div class="content">
+		<div class="header">
+			<h1 class="page-title">Edit Product</h1>
+		</div>
+		<ul class="breadcrumb">
+			<li><a href="index.html" th:href="@{/admin/index}">Home</a> <span class="divider">/</span></li>
+			<li><a href="users.html" th:href="@{/admin/product}">Products</a> <span class="divider">/</span></li>
+			<li class="active">Product</li>
+		</ul>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="btn-toolbar">
+					<button class="btn btn-primary" onclick="submit()">
+						<i class="icon-save"></i> Save
+					</button>
+					<a href="#myModal" data-toggle="modal" class="btn">Delete</a>
+					<div class="btn-group"></div>
+				</div>
+				<div class="well">
+					<form id="searchForm" action="#" th:action="@{/admin/product/add}" th:object="${product}" method="post">
+						<label>产品名称</label> 
+						<input type="text" th:field="*{name}" class="input-large" required> 
+						<label>产品优先级</label> 
+						 <select name="leve" th:field="*{level}" class="input-large" required>
+						  <option value="1" th:selected="selected">销量最高</option>
+				          <option value="2">推荐产品</option>
+				          <option value="3">常规产品</option>
+						 </select>
+						 <label>产品类型</label> 
+						 <select name="type" th:field="*{type}" class="input-large" required>
+						  <option value="1" th:selected="selected">矿灯</option>
+				          <option value="2">头盔</option>
+				          <option value="3">其他</option>
+						 </select>
+						<label>价格</label> 
+						<input type="text" th:field="*{price}" class="input-large" placeholder="请输入数字" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" required> 
+						<label>折扣</label> 
+						<input type="text" th:field="*{discount}" class="input-large" placeholder="请输入数字，0-1的小数" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" required> 
+						<label>生产厂家</label> 
+						<input type="text" th:field="*{manufacturer}" class="input-large" required> 
+						<label>销量</label> 
+						<input type="number" th:field="*{sales}" class="input-large">
+						<label>库存</label> 
+						<input type="number" th:field="*{stock}" class="input-large" required>
+						<label>产品描述</label>
+						<textarea  rows="3" th:field="*{description}" class="input-large"></textarea>
+						<input type="hidden" id="img1" th:field="*{img1}"> 
+						<input type="hidden" id="img2" th:field="*{img2}"> 
+						<input type="hidden" id="img3" th:field="*{img3}"> 
+						<input type="hidden" id="img4" th:field="*{img4}"> 
+						<input type="hidden" id="img5" th:field="*{img5}"> 
+						<input type="hidden" id="img6" th:field="*{img6}"> 
+					</form>
+					
+					 <form id="uploadForm" enctype="multipart/form-data" method="post">
+			        	<label>图片上传</label>
+						<p style='color:red;text-align:left;'>
+			        	注：<br/>1.照片的像素为160*180px。<br/>2.照片格式为BMP/JPG/JPEG。<br/>3.建议照片大小不超过40k。</p>
+			        	图片1:<input type="file" name="file" id="uploadimage1"/>
+						<div  id="imgDiv1" style="display:none">
+							<img id="imgid1" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+						</div><br/>
+			        	图片2:<input type="file" name="file" id="uploadimage2"/>
+			        	<div  id="imgDiv2" style="display:none">
+							<img id="imgid2" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+						</div><br/>
+			        	图片3:<input type="file" name="file" id="uploadimage3"/>
+			        	<div  id="imgDiv3" style="display:none">
+							<img id="imgid3" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+						</div><br/>
+			        	图片4:<input type="file" name="file" id="uploadimage4"/>
+			        	<div  id="imgDiv4" style="display:none">
+							<img id="imgid4" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+						</div><br/>
+			        	图片5:<input type="file" name="file" id="uploadimage5"/>
+			        	<div  id="imgDiv5" style="display:none">
+							<img id="imgid5" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+						</div><br/>
+			        	图片6:<input type="file" name="file" id="uploadimage6"/>
+			        	<div  id="imgDiv6" style="display:none">
+							<img id="imgid6" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+						</div><br/>
+						<input type="button" value="上传" id="btn" style="width:137px; height:27px"/>
+			        </form>
+				</div>
+				<div class="modal small hide fade" id="myModal" tabindex="-1"
+					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h3 id="myModalLabel">Delete Confirmation</h3>
+					</div>
+					<div class="modal-body">
+
+						<p class="error-text">
+							<i class="icon-warning-sign modal-icon"></i>Are you sure you want
+							to delete the user?
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+						<button class="btn btn-danger" data-dismiss="modal">Delete</button>
+					</div>
+				</div>
+
+				<footer>
+					<hr>
+					<p class="pull-right">
+						Collect from <a href="http://www.cssmoban.com/" title="网页模板"
+							target="_blank">网页模板</a>
+					</p>
+					<p>
+						&copy; 2012 <a href="#" target="_blank">Portnine</a>
+					</p>
+				</footer>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+

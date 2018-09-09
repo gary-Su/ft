@@ -1,9 +1,11 @@
 package com.website.ft.model;
 
-import java.util.Date;
+public class Product extends BaseEntity{
+	
 
-public class Product {
-    private Integer id;
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String name;
     
@@ -34,14 +36,8 @@ public class Product {
     private String img5;
 
     private String img6;
-
-    private Date createdate;
-
-    private String createby;
-
-    private Date updatedate;
-
-    private String updateby;
+    
+    private Integer flag;
 
     public Integer getId() {
         return id;
@@ -171,35 +167,11 @@ public class Product {
         this.img6 = img6 == null ? null : img6.trim();
     }
 
-    public Date getCreatedate() {
-        return createdate;
-    }
+	public Integer getFlag() {
+		return flag;
+	}
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
-
-    public String getCreateby() {
-        return createby;
-    }
-
-    public void setCreateby(String createby) {
-        this.createby = createby == null ? null : createby.trim();
-    }
-
-    public Date getUpdatedate() {
-        return updatedate;
-    }
-
-    public void setUpdatedate(Date updatedate) {
-        this.updatedate = updatedate;
-    }
-
-    public String getUpdateby() {
-        return updateby;
-    }
-
-    public void setUpdateby(String updateby) {
-        this.updateby = updateby == null ? null : updateby.trim();
-    }
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
 }

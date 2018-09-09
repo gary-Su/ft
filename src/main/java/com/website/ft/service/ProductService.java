@@ -1,6 +1,7 @@
 package com.website.ft.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,13 +31,18 @@ public class ProductService {
 			return productMapper.selectByPrimaryKey(id);
 		}
 	    
-	    public List<Product> selectAll(Product record) {
-			return productMapper.selectAll(record);
+	    public List<Product> selectAll(Product product) {
+			return productMapper.selectAll(product);
 		}
 	    
-	    @SuppressWarnings("unchecked")
-		public Page<Product> findPage(Page page, Product product) {
-	    	page.setList(productMapper.selectAll(product));
+		public Page<Product> findPage(Product product) {
+			int pageNo = product.getPageNo();
+			int pageSize = product.getPageSize();
+	    	int count = productMapper.selectAllCount();
+	    	product.setPageNo((pageNo-1)*pageSize);
+	    	List<Product> list = productMapper.selectAll(product);
+	    	Page<Product> page = new Page<Product>(pageNo,pageSize,count);
+	    	page.setList(list);
 	    	return page;
 	    	
 	    }
