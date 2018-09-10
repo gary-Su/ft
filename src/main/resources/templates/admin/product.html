@@ -113,6 +113,7 @@
 					            $("#imgDiv1").show();
 					            $("#uploadimage1").val("");
 					            $("#img1").val(data.img1);
+					            $("#imgid1").attr("src",data.img1);
 			        		}
 			        		if(data.img2 != null){
 			        			$("#imgDiv2").empty();
@@ -120,6 +121,7 @@
 					            $("#imgDiv2").show();
 					            $("#uploadimage2").val("");
 					            $("#img2").val(data.img2);
+					            $("#imgid2").attr("src",data.img2);
 			        		}
 			        		if(data.img3 != null){
 			        			$("#imgDiv3").empty();
@@ -127,6 +129,7 @@
 					            $("#imgDiv3").show();
 					            $("#uploadimage3").val("");
 					            $("#img3").val(data.img3);
+					            $("#imgid3").attr("src",data.img3);
 			        		}
 			        		if(data.img4 != null){
 			        			$("#imgDiv4").empty();
@@ -134,6 +137,7 @@
 					            $("#imgDiv4").show();
 					            $("#uploadimage4").val("");
 					            $("#img4").val(data.img4);
+					            $("#imgid4").attr("src",data.img4);
 			        		}
 			        		if(data.img5 != null){
 			        			$("#imgDiv5").empty();
@@ -141,6 +145,7 @@
 					            $("#imgDiv5").show();
 					            $("#uploadimage5").val("");
 					            $("#img5").val(data.img5);
+					            $("#imgid5").attr("src",data.img5);
 			        		}
 			        		if(data.img6 != null){
 			        			$("#imgDiv6").empty();
@@ -148,6 +153,7 @@
 					            $("#imgDiv6").show();
 					            $("#uploadimage6").val("");
 					            $("#img6").val(data.img6);
+					            $("#imgid6").attr("src",data.img6);
 			        		}
 			        	}else{
 			        		alert(data.msg+":"+data.code);
@@ -340,12 +346,30 @@
 						<input type="number" th:field="*{stock}" class="input-large" required>
 						<label>产品描述</label>
 						<textarea  rows="3" th:field="*{description}" class="input-large"></textarea>
-						<input type="hidden" id="img1" th:field="*{img1}"> 
+						<input type="hidden" id="img1" th:field="*{img1}">
+						<div  id="imgDiv11" th:if="*{img1}">
+						img1:<img th:src="*{img1}" id="imgid11"  style="width:137px; height:127px"/>
+						</div><br/>
 						<input type="hidden" id="img2" th:field="*{img2}"> 
-						<input type="hidden" id="img3" th:field="*{img3}"> 
+						<div th:if="*{img2}" id="imgDiv22" >
+						img2:<img id="imgid22" th:src="*{img2}" style="width:137px; height:127px"/>
+						</div><br/>
+						<input type="hidden" id="img3" th:field="*{img3}">
+						<div th:if="*{img3}" id="imgDiv33" >
+						img3:<img id="imgid33" th:src="*{img3}" style="width:137px; height:127px"/>
+						</div><br/> 
 						<input type="hidden" id="img4" th:field="*{img4}"> 
-						<input type="hidden" id="img5" th:field="*{img5}"> 
+						<div th:if="*{img4}" id="imgDiv44" >
+						img4:<img id="imgid44" th:src="*{img4}" style="width:137px; height:127px"/>
+						</div><br/>
+						<input type="hidden" id="img5" th:field="*{img5}">
+						<div th:if="*{img5}" id="imgDiv55" >
+						img5:<img id="imgid55" th:src="*{img5}" style="width:137px; height:127px"/>
+						</div><br/> 
 						<input type="hidden" id="img6" th:field="*{img6}"> 
+						<div th:if="*{img6}" id="imgDiv66" >
+						img6:<img id="imgid66" th:src="*{img6}" style="width:137px; height:127px"/>
+						</div>
 					</form>
 					
 					 <form id="uploadForm" enctype="multipart/form-data" method="post">
@@ -353,28 +377,28 @@
 						<p style='color:red;text-align:left;'>
 			        	注：<br/>1.照片的像素为160*180px。<br/>2.照片格式为BMP/JPG/JPEG。<br/>3.建议照片大小不超过40k。</p>
 			        	图片1:<input type="file" name="file" id="uploadimage1"/>
-						<div  id="imgDiv1" style="display:none">
-							<img id="imgid1" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+						<div  id="imgDiv1" th:if="*{img1}">
+							<img id="imgid1" th:src="*{img1}" style="width:137px; height:127px"/>
 						</div><br/>
 			        	图片2:<input type="file" name="file" id="uploadimage2"/>
-			        	<div  id="imgDiv2" style="display:none">
-							<img id="imgid2" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+			        	<div  id="imgDiv2" th:if="${img2}">
+							<img id="imgid2" th:src="${img2}" style="width:137px; height:127px"/>
 						</div><br/>
 			        	图片3:<input type="file" name="file" id="uploadimage3"/>
-			        	<div  id="imgDiv3" style="display:none">
-							<img id="imgid3" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+			        	<div  id="imgDiv3" th:if="${img3}">
+							<img id="imgid3" th:src="${img3}" style="width:137px; height:127px"/>
 						</div><br/>
 			        	图片4:<input type="file" name="file" id="uploadimage4"/>
-			        	<div  id="imgDiv4" style="display:none">
-							<img id="imgid4" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+			        	<div  id="imgDiv4" th:if="${img4}">
+							<img id="imgid4" th:src="${img4}" style="width:137px; height:127px"/>
 						</div><br/>
 			        	图片5:<input type="file" name="file" id="uploadimage5"/>
-			        	<div  id="imgDiv5" style="display:none">
-							<img id="imgid5" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+			        	<div  id="imgDiv5" th:if="${img5}">
+							<img id="imgid5" th:src="${img5}" style="width:137px; height:127px"/>
 						</div><br/>
 			        	图片6:<input type="file" name="file" id="uploadimage6"/>
-			        	<div  id="imgDiv6" style="display:none">
-							<img id="imgid6" th:src="@{/images/bb1.jpg}" style="width:137px; height:127px"/>
+			        	<div id="imgDiv6" th:if="${img6}">
+							<img id="imgid6" th:src="${img6}" style="width:137px; height:127px"/>
 						</div><br/>
 						<input type="button" value="上传" id="btn" style="width:137px; height:27px"/>
 			        </form>

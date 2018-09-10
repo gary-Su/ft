@@ -94,6 +94,14 @@ public class AdminProductController {
 		return "/admin/product";
 	}
 	
+	@RequestMapping(value= {"/toUpdate"})
+	public String toUpdate(@ModelAttribute(value="product")Product product,ModelMap map) {
+		Integer id = product.getId();
+		product = productService.selectByPrimaryKey(id);
+		map.put("product", product);
+		return "/admin/product";
+	}
+	
 	
 	
 }

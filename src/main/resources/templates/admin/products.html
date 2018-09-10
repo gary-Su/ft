@@ -206,7 +206,7 @@
 								<td th:text="${product.name}">无</td>
 								<td th:text="${product.manufacturer}">无</td>
 								<td th:text="${product.sales}">0</td>
-								<td><a href="user.html"><i class="icon-pencil"></i></a> <a
+								<td><a href="product.html" th:href="@{/admin/product/toUpdate?id=}+${product.id}"><i class="icon-pencil"></i></a> <a
 									href="#myModal" role="button" data-toggle="modal"><i
 										class="icon-remove"></i></a></td>
 							</tr>
