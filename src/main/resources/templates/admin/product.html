@@ -319,7 +319,8 @@
 					<div class="btn-group"></div>
 				</div>
 				<div class="well">
-					<form id="searchForm" action="#" th:action="@{/admin/product/add}" th:object="${product}" method="post">
+					<form id="searchForm" action="#" th:action="@{/admin/product/addOrUpdate}" th:object="${product}" method="post">
+						<input type="hidden" th:field="*{id}"> 
 						<label>产品名称</label> 
 						<input type="text" th:field="*{name}" class="input-large" required> 
 						<label>产品优先级</label> 
@@ -377,27 +378,27 @@
 						<p style='color:red;text-align:left;'>
 			        	注：<br/>1.照片的像素为160*180px。<br/>2.照片格式为BMP/JPG/JPEG。<br/>3.建议照片大小不超过40k。</p>
 			        	图片1:<input type="file" name="file" id="uploadimage1"/>
-						<div  id="imgDiv1" th:if="*{img1}">
+						<div  id="imgDiv1" style="display: none">
 							<img id="imgid1" th:src="*{img1}" style="width:137px; height:127px"/>
 						</div><br/>
 			        	图片2:<input type="file" name="file" id="uploadimage2"/>
-			        	<div  id="imgDiv2" th:if="${img2}">
+			        	<div  id="imgDiv2" style="display: none">
 							<img id="imgid2" th:src="${img2}" style="width:137px; height:127px"/>
 						</div><br/>
 			        	图片3:<input type="file" name="file" id="uploadimage3"/>
-			        	<div  id="imgDiv3" th:if="${img3}">
+			        	<div  id="imgDiv3" style="display: none">
 							<img id="imgid3" th:src="${img3}" style="width:137px; height:127px"/>
 						</div><br/>
 			        	图片4:<input type="file" name="file" id="uploadimage4"/>
-			        	<div  id="imgDiv4" th:if="${img4}">
+			        	<div  id="imgDiv4" style="display: none">
 							<img id="imgid4" th:src="${img4}" style="width:137px; height:127px"/>
 						</div><br/>
 			        	图片5:<input type="file" name="file" id="uploadimage5"/>
-			        	<div  id="imgDiv5" th:if="${img5}">
+			        	<div  id="imgDiv5" style="display: none">
 							<img id="imgid5" th:src="${img5}" style="width:137px; height:127px"/>
 						</div><br/>
 			        	图片6:<input type="file" name="file" id="uploadimage6"/>
-			        	<div id="imgDiv6" th:if="${img6}">
+			        	<div id="imgDiv6" style="display: none">
 							<img id="imgid6" th:src="${img6}" style="width:137px; height:127px"/>
 						</div><br/>
 						<input type="button" value="上传" id="btn" style="width:137px; height:27px"/>

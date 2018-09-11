@@ -3,6 +3,7 @@ package com.website.ft.admin.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,14 +42,26 @@ public class AdminProductController {
 		map.put("msg", "获取列表成功");
 		return "/admin/products";
 	}
-	@RequestMapping(value= "/add", method=RequestMethod.POST)
+	@RequestMapping(value= "/addOrUpdate", method=RequestMethod.POST)
 	public String add(@ModelAttribute(value="product") Product product,ModelMap map) {
-		int result  = productService.insert(product);
+		Integer id = product.getId();
+		int result = 0;
+		if(id == null) {
+			product.setCreatedate(new Date());
+			product.setCreateby("1");
+			result  = productService.insert(product);
+			map.put("msg", "添加数据成功");
+		}else {
+			product.setUpdatedate(new Date());
+			product.setUpdateby("1");
+			result  = productService.updateByPrimaryKeySelective(product);
+			map.put("msg", "更新数据成功");
+		}
 		Page<Product> page  = productService.findPage(product);
 		map.put("page", page);
 		map.put("result", result);
 		map.put("code", "0");
-		map.put("msg", "添加数据成功");
+		
 		return "/admin/products";
 	}
 	
@@ -65,6 +78,7 @@ public class AdminProductController {
 	                try {
 	                	String fileName = file.getOriginalFilename();
 	                	int index = fileName.indexOf(".");
+	                	String prefix = fileName.substring(0, index);
 	                	String suffix = fileName.substring(index, fileName.length());
 	                	String name = DateUtil.getCurrDateStr("yyyyMMddHHmmssSSS")+suffix;
 	                    byte[] bytes = file.getBytes(); 
@@ -72,7 +86,7 @@ public class AdminProductController {
 	                    stream = new BufferedOutputStream(new FileOutputStream(new File(path))); 
 	                    stream.write(bytes); 
 	                    stream.close();
-	                    map.put("img"+(i+1), path);
+	                    map.put(prefix, path);
 	                } catch (Exception e) {
 	                	e.printStackTrace();
 	                    stream =  null;
