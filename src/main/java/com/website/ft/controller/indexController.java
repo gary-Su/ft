@@ -11,6 +11,7 @@ import com.website.ft.model.Product;
 import com.website.ft.service.ProductService;
 
 @Controller
+@RequestMapping("/website")
 public class indexController {
 	
 	@Autowired

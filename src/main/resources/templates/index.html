@@ -23,7 +23,7 @@
 			<div class="clear"></div>
 			<div class="navigation">
 				<ul class="navig">
-					<li><a href="bikes.html">Bikes</a></li>
+					<li><a href="index.html" th:href="@{/website}">Home</a></li>
 					<li><a href="best.html">Best Buy</a></li>
 					<li><a href="bikes.html">Offers</a></li>
 					<li><a href="best.html">Accessories</a></li>
@@ -113,83 +113,24 @@
 			<div class="biseller-info">
 				<ul id="flexisel2">
 					<li th:each="list:${list}">
-						<div class="biseller-column">
-							<img src="images/sm1.jpg" alt="" class="veiw-img">
-								<div class="veiw-img-mark">
-									<a href="single.html">Add to Cart</a>
+						<div th:if="${list.level} eq 2">
+							<div class="biseller-column">
+								<img src="images/sm1.jpg" alt="" class="veiw-img">
+									<div class="veiw-img-mark">
+										<a href="single.html">Add to Cart</a>
+									</div>
+								<div class="biseller-name">
+									<h4 th:text="${list.description}"></h4>
+									<small th:text="${'by'+list.manufacturer}"> </small>
 								</div>
-							<div class="biseller-name">
-								<h4 th:text="${list.description}"></h4>
-								<small th:text="${'by'+list.manufacturer}"> </small>
-							</div>
-							<div class="biseller-name1">
-								<p  th:text="${list.price+'$'}"></p>
-							</div>
-							<div class="clearfix"></div>
-							<div class="price-s">
-								<a href="single.html">Add to Shopping bag</a>
-							</div>
-							
-						</div>
-					</li>
-					<li>
-						<div class="biseller-column">
-						<img src="images/sm3.jpg" alt="" class="veiw-img">
-							<div class="veiw-img-mark">
-								<a href="single.html">Add to Cart</a>
-							</div>
-						<div class="biseller-name">
-							<h4>Classic Bicycle </h4>
-							<small>by Ankino Frique</small>
-						</div>
-						<div class="biseller-name1">
-							<p>1 219.99$</p>
-						</div>
-						<div class="clearfix"></div>
-						<div class="price-s">
-							<a href="single.html">Add to Shopping bag</a>
-						</div>
-						
-						</div>
-					</li>
-					<li>
-						<div class="biseller-column">
-						<img src="images/sm4.jpg" alt="" class="veiw-img">
-							<div class="veiw-img-mark">
-								<a href="single.html">Add to Cart</a>
-							</div>
-						<div class="biseller-name">
-							<h4>Retro Bicycle #2</h4>
-							<small>by Enrique Salmo</small>
-						</div>
-						<div class="biseller-name1">
-							<p>899.99$</p>
-						</div>
-						<div class="clearfix"></div>
-						<div class="price-s">
-							<a href="single.html">Add to Shopping bag</a>
-						</div>
-						
-						</div>
-					</li>
-					<li>
-						<div class="biseller-column">
-						<img src="images/biscyle1.jpg" alt="" class="veiw-img">
-							<div class="veiw-img-mark">
-								<a href="single.html">Add to Cart</a>
-							</div>
-						<div class="biseller-name">
-							<h4>Classic Bicycle </h4>
-							<small>by Marco Spielmann</small>
-						</div>
-						<div class="biseller-name1">
-							<p>1 219.99$</p>
-						</div>
-						<div class="clearfix"></div>
-						<div class="price-s">
-							<a href="single.html">Add to Shopping bag</a>
-						</div>
-						
+								<div class="biseller-name1">
+									<p  th:text="${list.price+'$'}"></p>
+								</div>
+								<div class="clearfix"></div>
+								<div class="price-s">
+									<a href="single.html">Add to Shopping bag</a>
+								</div>
+							</div>	
 						</div>
 					</li>
 		     	</ul>
