@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.website.ft.model.Dic;
 import com.website.ft.model.Product;
 import com.website.ft.service.ProductService;
 import com.website.ft.util.DateUtil;
@@ -113,6 +114,17 @@ public class AdminProductController {
 		Integer id = product.getId();
 		product = productService.selectByPrimaryKey(id);
 		map.put("product", product);
+		return "/admin/product";
+	}
+	
+	@RequestMapping(value= {"/toDelete"})
+	public String toDelete(@ModelAttribute(value="product")Product product,ModelMap map) {
+		product.setFlag(0);
+		product.setUpdatedate(new Date());
+		product.setUpdateby("1");
+		int result  = productService.updateByPrimaryKeySelective(product);
+		map.put("result", result);
+		map.put("msg", "更新数据成功");
 		return "/admin/product";
 	}
 	

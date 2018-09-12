@@ -104,8 +104,8 @@
 			class="icon-dashboard"></i>Dashboard</a>
 		<ul id="dashboard-menu" class="nav nav-list collapse in">
 			<li><a href="index.html" th:href="@{/admin/index}">Home</a></li>
-			<li class="active"><a href="/admin/product" th:href="@{/admin/product}">Product List</a></li>
-			<li><a href="/admin/dic" th:href="@{/admin/dic}">Dic List</a></li>
+			<li><a href="/admin/product" th:href="@{/admin/product}">Product List</a></li>
+			<li class="active"><a href="/admin/dic" th:href="@{/admin/dic}">Dic List</a></li>
 			<li><a href="users.html">Sample List</a></li>
 			<li><a href="user.html">Sample Item</a></li>
 			<li><a href="media.html">Media</a></li>
@@ -150,109 +150,105 @@
 
 		<div class="header">
 
-			<h1 class="page-title">Products</h1>
+			<h1 class="page-title">Dics</h1>
 		</div>
 		<ul class="breadcrumb">
 			<li><a href="index.html" th:href="@{/admin/index}">Home</a> <span class="divider">/</span></li>
-			<li class="active">Products</li>
+			<li class="active">Dics</li>
 		</ul>
 
 		<div class="container-fluid">
 			<div class="row-fluid">
 			<form id="searchForm"  action="#" th:action="@{/admin/product}" method="post" class="breadcrumb form-search">
-		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
-		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form">
-			<li><label>姓名：</label>
-				<input id="patientName" maxlength="10" class="input-small"/>
-			</li>
-			<li><label>身份证号：</label>
-				<input id="patientIdNo"  maxlength="18" class="input-medium"/>
-			</li>
-		</ul>
-		<ul class="ul-form">
-			<li><label>年份：</label>
-				<input name="yearDate" id="yearDate"  type="text" maxlength="20" class="input-small Wdate required"
-					value=""
-					onclick="WdatePicker({dateFmt:'yyyy',isShowClear:false});"/>	
-			</li>
-			
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
-			<li class="clearfix"></li>
-		</ul>
-	</form>
-
-				<div class="btn-toolbar">
-					<button class="btn" >
-						<i class="icon-plus"></i><a th:href="@{/admin/product/toAdd}">New Product</a>
-					</button>
-					<button class="btn">Import</button>
-					<button class="btn">Export</button>
-					<div class="btn-group"></div>
+				<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
+				<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
+				<ul class="ul-form">
+					<li><label>字典名称：</label>
+						<input id="levle" maxlength="10" class="input-small"/>
+					</li>
+					<li class="clearfix"></li>
+				</ul>
+			</form>
+			<div class="btn-toolbar">
+				<button class="btn" >
+					<i class="icon-plus"></i><a th:href="@{/admin/product/toAdd}">New Product</a>
+				</button>
+				<button class="btn">Import</button>
+				<button class="btn">Export</button>
+				<div class="btn-group"></div>
+			</div>
+			<div class="well">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>value</th>
+							<th>label</th>
+							<th>type</th>
+							<th>description</th>
+							<th>delflag</th>
+							<th>createBy</th>
+							<th>createDate</th>
+							<th>updateBy</th>
+							<th>updateDate</th>
+							<th style="width: 26px;"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr  th:each="dic:${page.list}">
+							<td th:text="${dic.id}">#</td>
+							<td th:text="${dic.value}">无</td>
+							<td th:text="${dic.label}">无</td>
+							<td th:text="${dic.type}">无</td>
+							<td th:text="${dic.description}">无</td>
+							<td th:text="${dic.delFlag}">无</td>
+							<td th:text="${dic.createBy}">无</td>
+							<td th:text="${dic.createDate}">无</td>
+							<td th:text="${dic.updateBy}">无</td>
+							<td th:text="${dic.updateDate}">无</td>
+							<td><a href="product.html" th:href="@{/admin/dic/toUpdate?id=}+${dic.id}"><i class="icon-pencil"></i></a> <a
+								href="#myModal" role="button" data-toggle="modal"><i
+									class="icon-remove"></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="pagination" th:utext="${page}"></div>  
+			<!--<div class="pagination"><ul>
+				<li class="disabled"><a href="javascript:">&#171; 上一页</a></li>
+				<li class="active"><a href="javascript:">1</a></li>
+				<li class="disabled"><a href="javascript:">下一页 &#187;</a></li>
+				<li class="disabled controls"><a href="javascript:">当前 <input type="text" value="1" onkeypress="var e=window.event||this;var c=e.keyCode||e.which;if(c==13)page(this.value,10,'');" onclick="this.select();"/> / <input type="text" value="10" onkeypress="var e=window.event||this;var c=e.keyCode||e.which;if(c==13)page(1,this.value,'');" onclick="this.select();"/> 条，共 0 条</a></li>
+				</ul>
+				<div style="clear:both;"></div></div>-->
+			<div class="modal small hide fade" id="myModal" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h3 id="myModalLabel">Delete Confirmation</h3>
 				</div>
-				<div class="well">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>产品名称</th>
-								<th>厂家</th>
-								<th>销量</th>
-								<th style="width: 26px;"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr  th:each="product:${page.list}">
-								<td th:text="${product.id}">#</td>
-								<td th:text="${product.name}">无</td>
-								<td th:text="${product.manufacturer}">无</td>
-								<td th:text="${product.sales}">0</td>
-								<td><a href="product.html" th:href="@{/admin/product/toUpdate?id=}+${product.id}"><i class="icon-pencil"></i></a> <a
-									href="#myModal" role="button" data-toggle="modal"><i
-										class="icon-remove"></i></a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="pagination" th:utext="${page}"></div>  
-				<!--<div class="pagination"><ul>
-					<li class="disabled"><a href="javascript:">&#171; 上一页</a></li>
-					<li class="active"><a href="javascript:">1</a></li>
-					<li class="disabled"><a href="javascript:">下一页 &#187;</a></li>
-					<li class="disabled controls"><a href="javascript:">当前 <input type="text" value="1" onkeypress="var e=window.event||this;var c=e.keyCode||e.which;if(c==13)page(this.value,10,'');" onclick="this.select();"/> / <input type="text" value="10" onkeypress="var e=window.event||this;var c=e.keyCode||e.which;if(c==13)page(1,this.value,'');" onclick="this.select();"/> 条，共 0 条</a></li>
-					</ul>
-					<div style="clear:both;"></div></div>-->
-				
-
-				<div class="modal small hide fade" id="myModal" tabindex="-1"
-					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
-						<h3 id="myModalLabel">Delete Confirmation</h3>
-					</div>
-					<div class="modal-body">
-						<p class="error-text">
-							<i class="icon-warning-sign modal-icon"></i>Are you sure you want
-							to delete the user?
-						</p>
-					</div>
-					<div class="modal-footer">
-						<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-						<button class="btn btn-danger" data-dismiss="modal">Delete</button>
-					</div>
-				</div>
-				<footer>
-					<hr>
-					<p class="pull-right">
-						Collect from <a href="http://www.cssmoban.com/" title="网页模板"
-							target="_blank">网页模板</a>
+				<div class="modal-body">
+					<p class="error-text">
+						<i class="icon-warning-sign modal-icon"></i>Are you sure you want
+						to delete the user?
 					</p>
-					<p>
-						&copy; 2012 <a href="#" target="_blank">Portnine</a>
-					</p>
-				</footer>
-
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+					<button class="btn btn-danger" data-dismiss="modal">Delete</button>
+				</div>
+			</div>
+			<footer>
+				<hr>
+				<p class="pull-right">
+					Collect from <a href="http://www.cssmoban.com/" title="网页模板"
+						target="_blank">网页模板</a>
+				</p>
+				<p>
+					&copy; 2012 <a href="#" target="_blank">Portnine</a>
+				</p>
+			</footer>
 			</div>
 		</div>
 	</div>

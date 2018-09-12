@@ -1,9 +1,12 @@
 package com.website.ft.model;
 
-import java.util.Date;
+public class User extends BaseEntity{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-public class User {
-    private Integer id;
+	private Integer id;
 
     private String username;
 
@@ -13,13 +16,6 @@ public class User {
 
     private String email;
 
-    private Date createdate;
-
-    private String createby;
-
-    private Date updatedate;
-
-    private String updateby;
 
     public Integer getId() {
         return id;
@@ -59,37 +55,5 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
-    }
-
-    public Date getCreatedate() {
-        return createdate;
-    }
-
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
-
-    public String getCreateby() {
-        return createby;
-    }
-
-    public void setCreateby(String createby) {
-        this.createby = createby == null ? null : createby.trim();
-    }
-
-    public Date getUpdatedate() {
-        return updatedate;
-    }
-
-    public void setUpdatedate(Date updatedate) {
-        this.updatedate = updatedate;
-    }
-
-    public String getUpdateby() {
-        return updateby;
-    }
-
-    public void setUpdateby(String updateby) {
-        this.updateby = updateby == null ? null : updateby.trim();
     }
 }
