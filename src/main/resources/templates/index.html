@@ -2,14 +2,59 @@
 <html  xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Home</title>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-1.11.0.min.js"></script>
-<!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Custom Theme files -->
+<link href="css/bootstrap.css" th:href="@{css/bootstrap.css}" rel='stylesheet' type='text/css' />
+<link href="css/style.css" th:href="@{css/style.css}" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.0.min.js" th:src="@{js/jquery-1.11.0.min.js}"></script>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script>
+	$( "span.menu" ).click(function() {
+	  $( ".navigation ul.navig" ).slideToggle( "slow", function() {
+	    // Animation complete.
+	  });
+	});
+</script>
+<!-- Slideshow 3 -->
+<script src="js/responsiveslides.min.js" th:src="@{js/responsiveslides.min.js}"></script>
+<script>
+	// You can also use "$(window).load(function() {"
+	$(function () {
+	  // Slideshow 3
+	  $("#slider3").responsiveSlides({
+	    manualControls: '#slider3-pager',
+	  });
+	});
+</script>
+<script type="text/javascript">
+ $(window).load(function() {
+	$("#flexisel2").flexisel({
+		visibleItems: 3,
+		animationSpeed: 1000,
+		autoPlay: true,
+		autoPlaySpeed: 3000,    		
+		pauseOnHover: true,
+		enableResponsiveBreakpoints: true,
+    	responsiveBreakpoints: { 
+    		portrait: { 
+    			changePoint:480,
+    			visibleItems: 1
+    		}, 
+    		landscape: { 
+    			changePoint:640,
+    			visibleItems: 2
+    		},
+    		tablet: { 
+    			changePoint:768,
+    			visibleItems: 3
+    		}
+    	}
+    });
+    
+});
+</script>
+<script type="text/javascript" src="js/jquery.flexisel.js" th:src="@{js/jquery.flexisel.js}"></script>
 </head>
 <body>
 <!-- Header Starts Here -->
@@ -23,61 +68,42 @@
 			<div class="clear"></div>
 			<div class="navigation">
 				<ul class="navig">
-					<li><a href="index.html" th:href="@{/website}">Home</a></li>
+					<li><a href="#" th:href="@{/website}">Home</a></li>
 					<li><a href="best.html">Best Buy</a></li>
 					<li><a href="bikes.html">Offers</a></li>
 					<li><a href="best.html">Accessories</a></li>
 					<li><a href="contact.html">Contact</a></li>
 					<li><a href="about.html">About Us</a></li>
 				</ul>
-				<script>
-					$( "span.menu" ).click(function() {
-					  $( ".navigation ul.navig" ).slideToggle( "slow", function() {
-					    // Animation complete.
-					  });
-					});
-				</script>
-
 			</div>
 			<div class="clearfix"></div>
 		</div>
 		<!-- Banner Slide Starts Here -->
 			<div class="slider">
-			<!-- Slideshow 3 -->
-			<script src="js/responsiveslides.min.js"></script>
-			<script>
-			    // You can also use "$(window).load(function() {"
-			    $(function () {
-			      // Slideshow 3
-			      $("#slider3").responsiveSlides({
-			        manualControls: '#slider3-pager',
-			      });
-			    });
-			  </script>
 		    <ul class="rslides" id="slider3">
 		    <li>
 		    	<div class="banner">
-					<h1>What a beautiful bike</h1>
-					<h2>timeless, atmospheric<br>& uncredible bikes!</h2>
-				</div>
-		   	</li>
-		   	<li>
-		    	<div class="banner banner2">
-					<h1>What a beautiful bike</h1>
-					<h2>timeless, atmospheric<br>& uncredible bikes!</h2>
+					<h1>Our warehouse1</h1>
+					<h2>diverse , reliable<br>& High cost performance!</h2>
 				</div>
 		   	</li>
 		   	<li>
 		    	<div class="banner banner1">
-					<h1>What a beautiful bike</h1>
-					<h2>timeless, atmospheric<br>& uncredible bikes!</h2>
+					<h1>Our warehouse2</h1>
+					<h2>diverse , reliable<br>& High cost performance!</h2>
+				</div>
+		   	</li>
+		   	<li>
+		    	<div class="banner banner2">
+					<h1>Our warehouse3</h1>
+					<h2>diverse , reliable<br>& High cost performance!</h2>
 				</div>
 		   	</li>
 		   	</ul>
 		   	<ul id="slider3-pager">
-		      <li><a href="#"><img src="images/device3.jpg" alt=""></a></li>
-		      <li><a href="#"><img src="images/device2.jpg" alt=""></a></li>
-		      <li><a href="#"><img src="images/device1.jpg" alt=""></a></li>
+			   	<li><a href="#"><img src="images/device1.jpg" alt=""></a></li>
+			   	<li><a href="#"><img src="images/device2.jpg" alt=""></a></li>
+			    <li><a href="#"><img src="images/device3.jpg" alt=""></a></li>
 		    </ul>
 		    <div class="clearfix"> </div>
 		    </div>
@@ -136,34 +162,6 @@
 		     	</ul>
 			</div>
 		</div>
-			<script type="text/javascript">
-				 $(window).load(function() {
-					$("#flexisel2").flexisel({
-						visibleItems: 3,
-						animationSpeed: 1000,
-						autoPlay: true,
-						autoPlaySpeed: 3000,    		
-						pauseOnHover: true,
-						enableResponsiveBreakpoints: true,
-				    	responsiveBreakpoints: { 
-				    		portrait: { 
-				    			changePoint:480,
-				    			visibleItems: 1
-				    		}, 
-				    		landscape: { 
-				    			changePoint:640,
-				    			visibleItems: 2
-				    		},
-				    		tablet: { 
-				    			changePoint:768,
-				    			visibleItems: 3
-				    		}
-				    	}
-				    });
-				    
-				});
-			   </script>
-			   <script type="text/javascript" src="js/jquery.flexisel.js"></script>
 	</div>
 	<!--- fOOTER Starts Here --->
 	<div class="container">
@@ -189,6 +187,5 @@
 		<p class="copyright">Copyright &copy; 2014.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
 	</div>
 	<!--- fOOTER Starts Here --->
-
 </body>
 </html>
