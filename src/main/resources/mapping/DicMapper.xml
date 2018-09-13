@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.website.ft.dao.DicMapper">
+  <resultMap id="BaseResultMap" type="com.website.ft.model.Dic">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="delFlag" jdbcType="INTEGER" property="delflag" />
+    <result column="createBy" jdbcType="VARCHAR" property="createby" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="updateBy" jdbcType="VARCHAR" property="updateby" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updatedate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, value, label, type, description, delFlag, createBy, createDate, updateBy, updateDate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_dic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAllCount"  resultType="java.lang.Integer">
+    select count(*) from t_dic
+  </select>
+  
+  <select id="selectAll" parameterType="com.website.ft.model.Dic" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_dic t ORDER BY t.type DESC
+     <if test="pageNo != null and pageSize != null">
+     	limit #{pageNo}, #{pageSize}
+     </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_dic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.website.ft.model.Dic">
+    insert into t_dic (id, value, label, 
+      type, description, delFlag, 
+      createBy, createDate, updateBy, 
+      updateDate)
+    values (#{id,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{delflag,jdbcType=INTEGER}, 
+      #{createby,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{updateby,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.website.ft.model.Dic">
+    insert into t_dic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="label != null">
+        label,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+      <if test="createby != null">
+        createBy,
+      </if>
+      <if test="createdate != null">
+        createDate,
+      </if>
+      <if test="updateby != null">
+        updateBy,
+      </if>
+      <if test="updatedate != null">
+        updateDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=INTEGER},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.website.ft.model.Dic">
+    update t_dic
+    <set>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=INTEGER},
+      </if>
+      <if test="createby != null">
+        createBy = #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null">
+        updateBy = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.website.ft.model.Dic">
+    update t_dic
+    set value = #{value,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      delFlag = #{delflag,jdbcType=INTEGER},
+      createBy = #{createby,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateBy = #{updateby,jdbcType=VARCHAR},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

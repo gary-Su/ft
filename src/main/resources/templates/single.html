@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>About us</title>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-1.11.0.min.js"></script>
+<link href="css/bootstrap.css" th:href="@{css/bootstrap.css}" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="css/style.css" th:href="@{css/style.css}" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="css/etalage.css" th:href="@{css/etalage.css}">
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link rel="stylesheet" href="css/etalage.css">
-<script src="js/jquery.etalage.min.js"></script>
+<script src="js/jquery.etalage.min.js" th:src="@{js/jquery.etalage.min.js}"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.0.min.js" th:src="@{js/jquery-1.11.0.min.js}"></script>
 <!-- Include the Etalage files -->
 <script>
 		jQuery(document).ready(function($){
@@ -32,6 +32,68 @@
 
 	});
 </script>
+<script>
+	$( "span.menu" ).click(function() {
+	  $( ".navigation ul.navig" ).slideToggle( "slow", function() {
+	    // Animation complete.
+	  });
+	});
+</script>
+<script type="text/javascript">
+ $(window).load(function() {
+	$("#flexiselDemo3").flexisel({
+		visibleItems: 3,
+		animationSpeed: 1000,
+		autoPlay: true,
+		autoPlaySpeed: 3000,    		
+		pauseOnHover: true,
+		enableResponsiveBreakpoints: true,
+    	responsiveBreakpoints: { 
+    		portrait: { 
+    			changePoint:480,
+    			visibleItems: 1
+    		}, 
+    		landscape: { 
+    			changePoint:640,
+    			visibleItems: 2
+    		},
+    		tablet: { 
+    			changePoint:768,
+    			visibleItems: 3
+    		}
+    	}
+    });
+    
+});
+</script>
+<script type="text/javascript">
+ $(window).load(function() {
+	$("#flexiselDemo1").flexisel({
+		visibleItems: 3,
+		animationSpeed: 1000,
+		autoPlay: true,
+		autoPlaySpeed: 3000,    		
+		pauseOnHover: true,
+		enableResponsiveBreakpoints: true,
+    	responsiveBreakpoints: { 
+    		portrait: { 
+    			changePoint:480,
+    			visibleItems: 1
+    		}, 
+    		landscape: { 
+    			changePoint:640,
+    			visibleItems: 2
+    		},
+    		tablet: { 
+    			changePoint:768,
+    			visibleItems: 3
+    		}
+    	}
+    });
+    
+});
+</script>
+<script type="text/javascript" src="js/jquery.flexisel.js" th:src="@{js/jquery.flexisel.js}"></script>
 <!----//details-product-slider--->
 </head>
 <body>
@@ -46,20 +108,13 @@
 			<div class="clear"></div>
 			<div class="navigation">
 				<ul class="navig">
-					<li><a href="bikes.html">Bikes</a></li>
+					<li><a href="#" th:href="@{/website}">Home</a></li>
 					<li><a href="best.html">Best Buy</a></li>
 					<li><a href="bikes.html">Offers</a></li>
 					<li><a href="best.html">Accessories</a></li>
 					<li><a href="contact.html">Contact</a></li>
 					<li><a href="about.html">About Us</a></li>
 				</ul>
-				<script>
-					$( "span.menu" ).click(function() {
-					  $( ".navigation ul.navig" ).slideToggle( "slow", function() {
-					    // Animation complete.
-					  });
-					});
-				</script>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -215,33 +270,6 @@
 			     	</ul>
 					</div>
 			</div>
-			<script type="text/javascript">
-				 $(window).load(function() {
-					$("#flexiselDemo3").flexisel({
-						visibleItems: 3,
-						animationSpeed: 1000,
-						autoPlay: true,
-						autoPlaySpeed: 3000,    		
-						pauseOnHover: true,
-						enableResponsiveBreakpoints: true,
-				    	responsiveBreakpoints: { 
-				    		portrait: { 
-				    			changePoint:480,
-				    			visibleItems: 1
-				    		}, 
-				    		landscape: { 
-				    			changePoint:640,
-				    			visibleItems: 2
-				    		},
-				    		tablet: { 
-				    			changePoint:768,
-				    			visibleItems: 3
-				    		}
-				    	}
-				    });
-				    
-				});
-			   </script>
 			<h3 class="new-models">Sales Models</h3>
 				<div class="best-seller">
 					<div class="biseller-info">
@@ -269,34 +297,6 @@
 			     	</ul>
 					</div>
 			</div>
-			<script type="text/javascript">
-				 $(window).load(function() {
-					$("#flexiselDemo1").flexisel({
-						visibleItems: 3,
-						animationSpeed: 1000,
-						autoPlay: true,
-						autoPlaySpeed: 3000,    		
-						pauseOnHover: true,
-						enableResponsiveBreakpoints: true,
-				    	responsiveBreakpoints: { 
-				    		portrait: { 
-				    			changePoint:480,
-				    			visibleItems: 1
-				    		}, 
-				    		landscape: { 
-				    			changePoint:640,
-				    			visibleItems: 2
-				    		},
-				    		tablet: { 
-				    			changePoint:768,
-				    			visibleItems: 3
-				    		}
-				    	}
-				    });
-				    
-				});
-			   </script>
-			   <script type="text/javascript" src="js/jquery.flexisel.js"></script>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -318,6 +318,7 @@
 			<li><i class="sm"></i></li>
 		</ul>
 		<p class="copyright">Copyright &copy; 2014.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+	</div>
 	</div>
 	<!--- fOOTER Starts Here --->
 
