@@ -3,7 +3,6 @@ package com.website.ft.admin.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,15 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.website.ft.model.Dic;
-import com.website.ft.model.Product;
 import com.website.ft.service.DicService;
 import com.website.ft.util.Page;
 
 @Controller
 @RequestMapping("/admin/dic")
 public class AdminDicController {
-	@Value("${image-store-path}")
-	private String imageStorePath;
 	@Autowired
 	private DicService dicService;
 	
@@ -55,7 +51,7 @@ public class AdminDicController {
 	}
 	
 	@RequestMapping(value= {"/toAdd"})
-	public String toAdd(@ModelAttribute(value="product")Product product,ModelMap map) {
+	public String toAdd(@ModelAttribute(value="dic") Dic dic,ModelMap map) {
 		return "/admin/dic";
 	}
 	

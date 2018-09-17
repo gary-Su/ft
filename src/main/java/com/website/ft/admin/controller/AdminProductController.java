@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.website.ft.model.Dic;
 import com.website.ft.model.Product;
 import com.website.ft.service.ProductService;
 import com.website.ft.util.DateUtil;

@@ -6,7 +6,7 @@
     <result column="value" jdbcType="VARCHAR" property="value" />
     <result column="label" jdbcType="VARCHAR" property="label" />
     <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="delFlag" jdbcType="INTEGER" property="delflag" />
     <result column="createBy" jdbcType="VARCHAR" property="createby" />
     <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
@@ -14,7 +14,7 @@
     <result column="updateDate" jdbcType="TIMESTAMP" property="updatedate" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, value, label, type, description, delFlag, createBy, createDate, updateBy, updateDate
+    id, value, label, type, name, delFlag, createBy, createDate, updateBy, updateDate
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -30,7 +30,11 @@
   <select id="selectAll" parameterType="com.website.ft.model.Dic" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_dic t ORDER BY t.type DESC
+    from t_dic t  where 1=1
+     <if test="type != null and type != ''">
+     	t.name = #{name}
+     </if>
+    ORDER BY t.type DESC
      <if test="pageNo != null and pageSize != null">
      	limit #{pageNo}, #{pageSize}
      </if>
@@ -42,11 +46,11 @@
   </delete>
   <insert id="insert" parameterType="com.website.ft.model.Dic">
     insert into t_dic (id, value, label, 
-      type, description, delFlag, 
+      type, name, delFlag, 
       createBy, createDate, updateBy, 
       updateDate)
     values (#{id,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{delflag,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{delflag,jdbcType=INTEGER}, 
       #{createby,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{updateby,jdbcType=VARCHAR}, 
       #{updatedate,jdbcType=TIMESTAMP})
   </insert>
@@ -65,8 +69,8 @@
       <if test="type != null">
         type,
       </if>
-      <if test="description != null">
-        description,
+      <if test="name != null">
+        name,
       </if>
       <if test="delflag != null">
         delFlag,
@@ -97,8 +101,8 @@
       <if test="type != null">
         #{type,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="delflag != null">
         #{delflag,jdbcType=INTEGER},
@@ -129,8 +133,8 @@
       <if test="type != null">
         type = #{type,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="delflag != null">
         delFlag = #{delflag,jdbcType=INTEGER},
@@ -155,7 +159,7 @@
     set value = #{value,jdbcType=VARCHAR},
       label = #{label,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
       delFlag = #{delflag,jdbcType=INTEGER},
       createBy = #{createby,jdbcType=VARCHAR},
       createDate = #{createdate,jdbcType=TIMESTAMP},

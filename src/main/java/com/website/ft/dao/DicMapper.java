@@ -6,19 +6,19 @@ import com.website.ft.model.Dic;
 
 public interface DicMapper {
 	
-    int deleteByPrimaryKey(Integer id);
+	public int deleteByPrimaryKey(Integer id);
 
-    int insert(Dic record);
+    public int insert(Dic record);
 
-    int insertSelective(Dic record);
+    public int insertSelective(Dic record);
 
-    Dic selectByPrimaryKey(Integer id);
+    public Dic selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Dic record);
+    public int updateByPrimaryKeySelective(Dic record);
 
-    int updateByPrimaryKey(Dic record);
+    public int updateByPrimaryKey(Dic record);
     
-    int selectAllCount();
+    public int selectAllCount();
     
-    List<Dic> selectAll(Dic record);
+    public List<Dic> selectAll(Dic record);
 }

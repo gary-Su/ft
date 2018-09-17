@@ -14,7 +14,7 @@ public class Dic extends BaseEntity{
 
     private String type;
 
-    private String description;
+    private String name;
 
     private Integer delflag;
 
@@ -50,12 +50,12 @@ public class Dic extends BaseEntity{
         this.type = type == null ? null : type.trim();
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public Integer getDelflag() {

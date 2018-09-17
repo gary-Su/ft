@@ -23,178 +23,11 @@
 <script src="../static/admin/lib/bootstrap/js/bootstrap.js" th:src="@{/admin/lib/bootstrap/js/bootstrap.js}"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#btn").click(function () {
-			if(confirm("确认上传？")){
-				var imagePath1 = $("#uploadimage1").val();
-				var imagePath2 = $("#uploadimage2").val();
-				var imagePath3 = $("#uploadimage3").val();
-				var imagePath4 = $("#uploadimage4").val();
-				var imagePath5 = $("#uploadimage5").val();
-				var imagePath6 = $("#uploadimage6").val();
-			    if (imagePath1 == "" && imagePath2 == ""  && imagePath3 == "" && imagePath4 == "" && imagePath5 == "" && imagePath6 == "") {  
-			    	alert("please upload image file",2);
-			        return false;  
-			    } 
-			    if(imagePath1 != ""){
-			    	 var strExtension1 = imagePath1.substr(imagePath1.lastIndexOf('.') + 1);  
-					    if (strExtension1!='jpg') { 
-					    	if (strExtension1!='bmp') { 
-					    		if (strExtension1!='png') { 
-					    			alert("please upload file that is a image for image1",2);  
-							        return false; 
-						    	}
-					    	}
-					    }
-			    }
-			    if(imagePath2 != ""){
-			    	 var strExtension2 = imagePath2.substr(imagePath2.lastIndexOf('.') + 1);  
-					    if (strExtension2!='jpg') { 
-					    	if (strExtension2!='bmp') { 
-					    		if (strExtension2!='png') { 
-					    			alert("please upload file that is a image for image2",2);  
-							        return false; 
-						    	}
-					    	}
-					    }
-			    }
-			    if(imagePath3 != ""){
-			    	 var strExtension3 = imagePath3.substr(imagePath3.lastIndexOf('.') + 1);  
-					    if (strExtension3!='jpg') { 
-					    	if (strExtension3!='bmp') { 
-					    		if (strExtension3!='png') { 
-					    			alert("please upload file that is a image for image3",2);  
-							        return false; 
-						    	}
-					    	}
-					    }
-			    }
-			    if(imagePath4 != ""){
-			    	 var strExtension4 = imagePath4.substr(imagePath4.lastIndexOf('.') + 1);  
-					    if (strExtension4!='jpg') { 
-					    	if (strExtension4!='bmp') { 
-					    		if (strExtension4!='png') { 
-					    			alert("please upload file that is a image for image4",2);  
-							        return false; 
-						    	}
-					    	}
-					    }
-			    }
-			    if(imagePath5 != ""){
-			    	 var strExtension5 = imagePath5.substr(imagePath5.lastIndexOf('.') + 1);  
-					    if (strExtension5!='jpg') { 
-					    	if (strExtension5!='bmp') { 
-					    		if (strExtension5!='png') { 
-					    			alert("please upload file that is a image for image5",2);  
-							        return false; 
-						    	}
-					    	}
-					    }
-			    }
-			    if(imagePath6 != ""){
-			    	 var strExtension6 = imagePath6.substr(imagePath6.lastIndexOf('.') + 1);  
-					    if (strExtension6!='jpg') { 
-					    	if (strExtension6!='bmp') { 
-					    		if (strExtension6!='png') { 
-					    			alert("please upload file that is a image for image6",2);  
-							        return false; 
-						    	}
-					    	}
-					    }
-			    }
-			   
-			    $("#uploadForm").ajaxSubmit({  
-			        type : 'POST',  
-			        url :  '[[@{/admin/product/uploadImage}]]',  
-			        success : function(data) {  
-			        	if(data.code=='0'){
-			        		if(data.img1 != null){
-			        			$("#imgDiv1").empty();
-					            $("#imgDiv1").html('<img th:src="@{'+data.img1+'}" style="width:137px;height:127px;"/>');
-					            $("#imgDiv1").show();
-					            $("#uploadimage1").val("");
-					            $("#img1").val(data.img1);
-					            $("#imgid1").attr("src",data.img1);
-			        		}
-			        		if(data.img2 != null){
-			        			$("#imgDiv2").empty();
-					            $("#imgDiv2").html('<img th:src="@{'+data.img2+'}" style="width:137px;height:127px;"/>');
-					            $("#imgDiv2").show();
-					            $("#uploadimage2").val("");
-					            $("#img2").val(data.img2);
-					            $("#imgid2").attr("src",data.img2);
-			        		}
-			        		if(data.img3 != null){
-			        			$("#imgDiv3").empty();
-					            $("#imgDiv3").html('<img th:src="@{'+data.img3+'}" style="width:137px;height:127px;"/>');
-					            $("#imgDiv3").show();
-					            $("#uploadimage3").val("");
-					            $("#img3").val(data.img3);
-					            $("#imgid3").attr("src",data.img3);
-			        		}
-			        		if(data.img4 != null){
-			        			$("#imgDiv4").empty();
-					            $("#imgDiv4").html('<img th:src="@{'+data.img4+'}" style="width:137px;height:127px;"/>');
-					            $("#imgDiv4").show();
-					            $("#uploadimage4").val("");
-					            $("#img4").val(data.img4);
-					            $("#imgid4").attr("src",data.img4);
-			        		}
-			        		if(data.img5 != null){
-			        			$("#imgDiv5").empty();
-					            $("#imgDiv5").html('<img th:src="@{'+data.img5+'}" style="width:137px;height:127px;"/>');
-					            $("#imgDiv5").show();
-					            $("#uploadimage5").val("");
-					            $("#img5").val(data.img5);
-					            $("#imgid5").attr("src",data.img5);
-			        		}
-			        		if(data.img6 != null){
-			        			$("#imgDiv6").empty();
-					            $("#imgDiv6").html('<img th:src="@{'+data.img6+'}" style="width:137px;height:127px;"/>');
-					            $("#imgDiv6").show();
-					            $("#uploadimage6").val("");
-					            $("#img6").val(data.img6);
-					            $("#imgid6").attr("src",data.img6);
-			        		}
-			        	}else{
-			        		alert(data.msg+":"+data.code);
-			        	}
-			        },  
-			        error : function() {  
-			            alert("上传失败，请检查网络后重试,上传文件太大");  
-			        }  
-			    });
-			}
-		})
 	});
 	
 	function submit(){
 		$("#searchForm").submit();
 	}
-	 function NumberCheck(num) {
-	      var str = num;
-	      var len1 = str.substr(0, 1);
-	      var len2 = str.substr(1, 1);
-	      //如果第一位是0，第二位不是点，就用数字把点替换掉
-	      if (str.length > 1 && len1 == 0 && len2 != ".") {
-	        str = str.substr(1, 1);
-	      }
-	      //第一位不能是.
-	      if (len1 == ".") {
-	        str = "";
-	      }
-	      //限制只能输入一个小数点
-	      if (str.indexOf(".") != -1) {
-	        var str_ = str.substr(str.indexOf(".") + 1);
-	        if (str_.indexOf(".") != -1) {
-	          str = str.substr(0, str.indexOf(".") + str_.indexOf(".") + 1);
-	        }
-	      }
-	      //正则替换，保留数字和小数点
-	      str = str.replace(/[^\d^\.]+/g,'')
-	      //如果需要保留小数点后两位，则用下面公式
-	      str = str.replace(/\.\d\d$/,'')
-	      return str;
-	    }
 </script>
 
 <style type="text/css">
@@ -307,7 +140,7 @@
 		</div>
 		<ul class="breadcrumb">
 			<li><a href="index.html" th:href="@{/admin/index}">Home</a> <span class="divider">/</span></li>
-			<li><a href="users.html" th:href="@{/admin/product}">Products</a> <span class="divider">/</span></li>
+			<li><a href="users.html" th:href="@{/admin/dic}">Dics</a> <span class="divider">/</span></li>
 			<li class="active">Product</li>
 		</ul>
 		<div class="container-fluid">
@@ -320,90 +153,19 @@
 					<div class="btn-group"></div>
 				</div>
 				<div class="well">
-					<form id="searchForm" action="#" th:action="@{/admin/product/addOrUpdate}" th:object="${product}" method="post">
+					<form id="searchForm" action="#" th:action="@{/admin/dic/addOrUpdate}" th:object="${dic}" method="post">
 						<input type="hidden" th:field="*{id}"> 
-						<label>产品名称</label> 
-						<input type="text" th:field="*{name}" class="input-large" required> 
-						<label>产品优先级</label> 
-						 <select name="leve" th:field="*{level}" class="input-large" required>
-						  <option value="1" th:selected="selected">销量最高</option>
-				          <option value="2">推荐产品</option>
-				          <option value="3">常规产品</option>
-						 </select>
-						 <label>产品类型</label> 
-						 <select name="type" th:field="*{type}" class="input-large" required>
-						  <option value="1" th:selected="selected">矿灯</option>
-				          <option value="2">头盔</option>
-				          <option value="3">其他</option>
-						 </select>
-						<label>价格</label> 
-						<input type="text" th:field="*{price}" class="input-large" placeholder="请输入数字" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" required> 
-						<label>折扣</label> 
-						<input type="text" th:field="*{discount}" class="input-large" placeholder="请输入数字，0-1的小数" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" required> 
-						<label>生产厂家</label> 
-						<input type="text" th:field="*{manufacturer}" class="input-large" required> 
-						<label>销量</label> 
-						<input type="number" th:field="*{sales}" class="input-large">
-						<label>库存</label> 
-						<input type="number" th:field="*{stock}" class="input-large" required>
-						<label>产品描述</label>
+						<label>字典类型</label> 
+						<input type="text" th:field="*{type}" class="input-large" required> 
+						<label>字典label</label> 
+						<input type="text" th:field="*{label}" class="input-large" required> 
+						<label>字典value</label> 
+						<input type="text" th:field="*{value}" class="input-large" required> 
+						<label>描述</label> 
 						<textarea  rows="3" th:field="*{description}" class="input-large"></textarea>
-						<input type="hidden" id="img1" th:field="*{img1}">
-						<div  id="imgDiv11" th:if="*{img1}">
-						img1:<img th:src="*{img1}" id="imgid11"  style="width:137px; height:127px"/>
-						</div><br/>
-						<input type="hidden" id="img2" th:field="*{img2}"> 
-						<div th:if="*{img2}" id="imgDiv22" >
-						img2:<img id="imgid22" th:src="*{img2}" style="width:137px; height:127px"/>
-						</div><br/>
-						<input type="hidden" id="img3" th:field="*{img3}">
-						<div th:if="*{img3}" id="imgDiv33" >
-						img3:<img id="imgid33" th:src="*{img3}" style="width:137px; height:127px"/>
-						</div><br/> 
-						<input type="hidden" id="img4" th:field="*{img4}"> 
-						<div th:if="*{img4}" id="imgDiv44" >
-						img4:<img id="imgid44" th:src="*{img4}" style="width:137px; height:127px"/>
-						</div><br/>
-						<input type="hidden" id="img5" th:field="*{img5}">
-						<div th:if="*{img5}" id="imgDiv55" >
-						img5:<img id="imgid55" th:src="*{img5}" style="width:137px; height:127px"/>
-						</div><br/> 
-						<input type="hidden" id="img6" th:field="*{img6}"> 
-						<div th:if="*{img6}" id="imgDiv66" >
-						img6:<img id="imgid66" th:src="*{img6}" style="width:137px; height:127px"/>
-						</div>
+						<label>是否有效</label> 
+						<input type="number" th:field="*{delflag}" class="input-large">
 					</form>
-					
-					 <form id="uploadForm" enctype="multipart/form-data" method="post">
-			        	<label>图片上传</label>
-						<p style='color:red;text-align:left;'>
-			        	注：<br/>1.照片的像素为160*180px。<br/>2.照片格式为BMP/JPG/JPEG。<br/>3.建议照片大小不超过40k。</p>
-			        	图片1:<input type="file" name="file" id="uploadimage1"/>
-						<div  id="imgDiv1" style="display: none">
-							<img id="imgid1" th:src="*{img1}" style="width:137px; height:127px"/>
-						</div><br/>
-			        	图片2:<input type="file" name="file" id="uploadimage2"/>
-			        	<div  id="imgDiv2" style="display: none">
-							<img id="imgid2" th:src="${img2}" style="width:137px; height:127px"/>
-						</div><br/>
-			        	图片3:<input type="file" name="file" id="uploadimage3"/>
-			        	<div  id="imgDiv3" style="display: none">
-							<img id="imgid3" th:src="${img3}" style="width:137px; height:127px"/>
-						</div><br/>
-			        	图片4:<input type="file" name="file" id="uploadimage4"/>
-			        	<div  id="imgDiv4" style="display: none">
-							<img id="imgid4" th:src="${img4}" style="width:137px; height:127px"/>
-						</div><br/>
-			        	图片5:<input type="file" name="file" id="uploadimage5"/>
-			        	<div  id="imgDiv5" style="display: none">
-							<img id="imgid5" th:src="${img5}" style="width:137px; height:127px"/>
-						</div><br/>
-			        	图片6:<input type="file" name="file" id="uploadimage6"/>
-			        	<div id="imgDiv6" style="display: none">
-							<img id="imgid6" th:src="${img6}" style="width:137px; height:127px"/>
-						</div><br/>
-						<input type="button" value="上传" id="btn" style="width:137px; height:27px"/>
-			        </form>
 				</div>
 				<div class="modal small hide fade" id="myModal" tabindex="-1"
 					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
